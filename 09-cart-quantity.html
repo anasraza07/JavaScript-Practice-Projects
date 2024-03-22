@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>07-challenge</title>
+    <title>Cart Quantity 09</title>
 </head>
 
 <body>
@@ -37,23 +37,31 @@
     <button onclick="
         cartQuantity = 0;
         console.log(`Cart was reset`);
-        console.log(`Cart Quantity: ${cartQuantity}`);
+        // console.log(`Cart Quantity: ${cartQuantity}`);
+        document.querySelector('.js-cart-quantity')
+            .innerHTML = `Cart Quantity: ${cartQuantity}`
     ">Reset Cart</button>
+    <p class="js-cart-quantity"></p>
     <script>
-        let cartQuantity = 0
+        let cartQuantity = 0;
+        document.querySelector('.js-cart-quantity')
+            .innerHTML = `Cart Quantity: ${cartQuantity}`;
+
         function updateCartQuantity(change) {
             if (cartQuantity + change > 10) {
-                alert("The cart is full");
+                console.log('The cart is full');
                 return;
             };
 
             if (cartQuantity + change < 0) {
-                alert("Not enough items in the cart");
+                console.log('Not enough items in the cart')
                 return;
             };
-                
-            cartQuantity += change
-            console.log(`Cart Quantity: ${cartQuantity}`)
+
+            cartQuantity += change;
+            // console.log(`Cart Quantity: ${cartQuantity}`);
+            document.querySelector('.js-cart-quantity')
+                .innerHTML = `Cart Quantity: ${cartQuantity}`
         }
     </script>
 </body>

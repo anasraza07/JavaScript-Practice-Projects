@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Challenge 10</title>
+    <style>
+        .button {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: none;
+            font-size: 16px;
+            background-color: rgb(230, 230, 230);
+            cursor: pointer;
+        }
+
+        .is-toggled {
+            background: #000;
+            color: #fff;
+        }
+
+        .cost-input {
+            padding: 8px 10px;
+            font-size: 16px;
+        }
+
+        .cost-btn {
+            padding: 12px;
+            background-color: green;
+            border: none;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .cost-msg {
+            font-size: 20px;
+        }
+
+        .js-cost-msg-error {   
+            color: red;
+         }
+    </style>
+
+</head>
+
+<body>
+    <h1>Challenge 10</h1>
+    <button class="button js-gaming-button" onclick="
+        onOffButton('.js-gaming-button');
+    ">Gaming</button>
+    <button class="button js-music-button" onclick="
+        onOffButton('.js-music-button');
+    ">Music</button>
+    <button class="button js-tech-button" onclick="
+        onOffButton('.js-tech-button');
+    ">Tech</button>
+
+    <br><br>
+
+    <input type="text" class=" cost-input js-cost-input" onkeyup="
+        
+    ">
+    <button class="cost-btn" onclick="
+        calculateCost();
+    ">Calculate</button>
+    <p class="cost-msg js-cost-msg"></p>
+
+    <script>
+        function calculateCost() {
+            let cost = Number(document.querySelector('.js-cost-input').value);
+            // console.log(costInputElement.value);
+            if (cost < 0) {
+                document.querySelector('.js-cost-msg').classList.add('js-cost-msg-error')
+                document.querySelector('.js-cost-msg')
+                    .innerHTML = 'Error: cost cannot be less than $0';
+                return;
+            };
+
+            if (cost < 40) {
+                cost = ((cost * 100) + 100) / 100;
+            };
+
+            document.querySelector('.js-cost-msg').innerHTML = `$${cost}`;
+        };
+
+        function onOffButton(className) {
+            const btn1 = document.querySelector('.js-gaming-button');
+            const btn2 = document.querySelector('.js-music-button');
+            const btn3 = document.querySelector('.js-tech-button');
+
+            const clickedButton = document.querySelector(className);
+
+            if (!document.querySelector(className).classList.contains('is-toggled')) {
+                btn1.classList.remove('is-toggled');
+                btn2.classList.remove('is-toggled');
+                btn3.classList.remove('is-toggled');
+
+                clickedButton.classList.add('is-toggled');
+            } else {
+                clickedButton.classList.remove('is-toggled');
+            };
+        };
+    </script>
+</body>
+
+</html>

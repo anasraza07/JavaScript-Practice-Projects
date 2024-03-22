@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Challenge 09</title>
+
+</head>
+
+<body>
+    <h1>Challenge 09</h1>
+    <p>Amazon Shipping Calculator</p>
+    <input type="text" placeholder="Cost of order" class="js-cost-input">
+    <button onclick="
+        calculateCost();
+    ">Calculate</button>
+    <p class="js-cost"></p>
+
+    <input type="text" class="js-text-input" onkeyup="
+        const text = document.querySelector('.js-text-input').value;
+        document.querySelector('.js-text')
+            .innerHTML = text;
+    ">
+    <p class="js-text"></p>
+
+    <script>
+        function calculateCost() {
+            let cost = Number(document.querySelector('.js-cost-input').value);
+
+            if (cost < 40) {
+                cost = ((cost * 100) + 100) / 100;
+            };
+
+            document.querySelector('.js-cost').innerHTML = `$${cost}`;
+        };
+
+    </script>
+</body>
+
+</html>

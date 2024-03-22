@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>App</title>
+</head>
+
+<body>
+    <h1>Challenge 12</h1>
+    <button onclick="
+        messages++;
+            displayNotification();
+        ">Add</button>
+    <button onclick="
+        if(messages > 0){
+            messages--;
+        };
+
+        if(messages === 0){
+            stopNotification();
+        };
+    ">Remove</button>
+
+    <br><br>
+
+    <button onclick="
+        displayMessage();
+    ">Add to cart</button>
+    <p class="js-message"></p>
+
+    <script>
+        let intervalId = '';
+        let messages = 2;
+        
+        displayNotification();
+        
+        function stopNotification() {
+            clearInterval(intervalId);
+            intervalId = '';
+            document.title = 'App';
+        }
+
+        function displayNotification() {
+            if (intervalId) {
+                return;
+            };
+
+            intervalId = setInterval(() => {
+                if (document.title === 'App') {
+                    document.title = `(${messages}) New messages`;
+                } else {
+                    document.title = 'App';
+                };
+            }, 1000);
+        };
+        
+        let timeoutId = '';
+
+        function displayMessage() {
+            const messageElement = document.querySelector('.js-message');
+            messageElement.innerHTML = 'Added';
+
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            };
+
+            timeoutId = setTimeout(() => {
+                messageElement.innerHTML = '';
+            }, 2000)
+        };
+
+    </script>
+</body>
+
+</html>
